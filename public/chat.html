@@ -4,33 +4,38 @@
   <meta charset="UTF-8">
   <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <a href="/index.html">Change Settings</a>
+      <div class="spacer-60">   </div>
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-default">
+          <a class="settings" href="/index.html"><i class="fa fa-cog fa-3x" aria-hidden="true"></i></a>
 
-        <h1>Chat</h1>
-        <h3 id="roomName"> </h3>
-        <hr>
-    <div class="messages">
+          <h1>Chat</h1>
+          <h3 id="roomName"> </h3>
+          <hr>
+          <div class="messages">
 
-  </div>
+          </div><!-- messages-->
 
-  <form class="form-group"  action="POST" id="form-message">
+          <form class="form-group"  action="POST" id="form-message">
 
-    <div class="input-group">
-    <input class="form-control" type="text" placeholder="enter your message" name='message'/>
-    <span class="input-group-btn">
+            <div class="input-group">
+            <input class="form-control" type="text" placeholder="enter your message" name='message'/>
+            <span class="input-group-btn">
 
-    <button class='btn btn-default' type="submit">submit</button>
-  </span>
-  </div>
-  </form>
-  </div>
-  </div>
-  </div>
+            <button class='btn btn-default' type="submit">submit</button>
+            </span>
+            </div>
+          </form>
+        </div><!-- panel -->
+      </div><!-- row-->
+    </div><!-- col-md-6 -->
+  </div><!-- container -->
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

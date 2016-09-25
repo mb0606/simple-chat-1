@@ -36,9 +36,10 @@ var $form = $('#form-message')
 $form.on('submit', function(event){
   event.preventDefault();
   $message = $form.find('input[name=message]');
-  socket.emit('message', {
-    name: name,
-    text: $message.val()
-  });
+    // send message to Server
+    socket.emit('message', {
+      name: name,
+      text: $message.val()
+    });
   $message.val('')
 });

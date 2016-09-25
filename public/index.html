@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Socket.io</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -12,19 +13,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1>Join Chat Room</h1>
-      <hr>
+    <div class="spacer-60"></div>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+        <h1>Join Chat Room</h1>
+        <hr>
 
+            <form class="form-group"  action="/chat.html" >
+              <label for="">Display Name</label>
+              <input class="form-control" type="text" placeholder="enter your name" name='name'/>
+              <label for="">Room Name</label>
+              <input class="form-control" type="text" placeholder="Room Name" name='room'/></br>
+              <input class='btn btn-default' type="submit" value="Join Chat" >
+            </form>
 
-        <form class="form-group"  action="/chat.html" >
-          <label for="">Display Name</label>
-          <input class="form-control" type="text" placeholder="enter your name" name='name'/>
-          <label for="">Room Name</label>
-          <input class="form-control" type="text" placeholder="Room Name" name='room'/>
-          <input class='btn btn-default' type="submit" value="Join Chat" >
-        </form>
-    </div> <!-- col-6 -->
+        </div><!-- panel -->
+      </div> <!-- col-6 -->
   </div><!-- row -->
 </div><!-- container -->
 

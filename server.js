@@ -63,7 +63,7 @@ io.on('connection', function(socket){
 
   socket.on('joinRoom', function(req){
     // req is the client info
-    console.log("this is the clientInfo outside :" ,req)
+    console.log("this is the clientInfo outside :" , req)
     clientInfo[socket.id] = req;
     socket.join(req.room);
     socket.broadcast.to(req.room).emit('message', {
@@ -75,7 +75,7 @@ io.on('connection', function(socket){
 
   socket.on('message', function(message){
     // at this point we know the message get received but not sent out
-    console.log('Message received ' + message.text);
+    console.log('Message received by the Server : ' + message.text);
 
     if(message.text === '@currentUsers' ){
       sendCurrentUsers(socket);
@@ -93,7 +93,7 @@ io.on('connection', function(socket){
     // Argument 2 : Data you would like to send; I am choosing an object which can have many different
     // properties
     name: "System Message",
-    text: 'Welcome hey',
+    text: 'Welcome',
     timestamp: moment().valueOf()
     // timestamp property - Javascript timeStamp (milliseconds)
   });

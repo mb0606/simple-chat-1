@@ -1,0 +1,14 @@
+.spacer-60 {
+  margin-top: 60px;
+}
+.panel {
+  padding:20px;
+}
+
+.settings {
+  float:right;
+  color: darkturquoise;
+}
+.settings:hover {
+  color:paleturquoise;
+}
