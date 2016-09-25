@@ -17,7 +17,10 @@ socket.on('connect', function(){
  })
 })
 
-
+// call socket.on Agument 1 : custom event ‘message’
+// Argument 2 : CB with the message passed in
+// we have added a way for the front end to listen for this custom event and when it gets it
+// it will print it to the console
 socket.on('message', function(message){
   var momentTimeStamp = moment.utc(message.timestamp)
   console.log("New Message" + message);

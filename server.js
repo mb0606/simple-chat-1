@@ -11,7 +11,7 @@ var moment     = require('moment')
 var bodyParser = require('body-parser');
 var messageRouter = require('./messageRouter')
 
-// express.static takes the path to the folder
+// express.static takes the path to the folder to serve client files
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(express.static('./'));
@@ -42,6 +42,8 @@ function sendCurrentUsers(socket) {
 
 //  lets you listen for events; first param the name of the event ; second CB;
 //  when you get connection event run function
+// we get access to the individual socket
+// socket refers to an individual connection
 io.on('connection', function(socket){
   console.log('User connected via socket.io!');
 
@@ -72,8 +74,9 @@ io.on('connection', function(socket){
   });
 
   socket.on('message', function(message){
+    // at this point we know the message get received but not sent out
+    console.log('Message received ' + message.text);
 
-    console.log('Message recieved ' + message.text);
     if(message.text === '@currentUsers' ){
       sendCurrentUsers(socket);
     } else {
@@ -81,12 +84,20 @@ io.on('connection', function(socket){
       io.to(clientInfo[socket.id].room).emit('message', message);
     }
   })
-// timestamp property - Javascript timeStamp (milliseconds)
+
+// we get access to the individual socket
+// socket refers to an individual connection
+
   socket.emit('message', {
+    // Argument 1 : Anything you want can be an event I am using message
+    // Argument 2 : Data you would like to send; I am choosing an object which can have many different
+    // properties
     name: "System Message",
     text: 'Welcome hey',
     timestamp: moment().valueOf()
+    // timestamp property - Javascript timeStamp (milliseconds)
   });
+
 });
 
 
