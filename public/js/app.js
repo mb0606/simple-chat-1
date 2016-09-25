@@ -1,13 +1,16 @@
 var name = getQueryVariable('name') || "Anonymous";
 var room = getQueryVariable('room')
+// create socket variable
 var socket = io();
 
 $('#roomName').text(room);
 
 console.log(name + ' wants to join ' + room)
 
+// pass in the same two arguments; event and CB
+// in this case the connection onthe front end is called connect
 socket.on('connect', function(){
-  console.log('Connected to socket.io')
+  console.log('Connected to socket.io server')
   socket.emit('joinRoom', {
    name:name,
    room:room,

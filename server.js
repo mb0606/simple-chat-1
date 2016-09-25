@@ -1,19 +1,24 @@
+// Create regular express app
 var PORT       = process.env.PORT || 3000;
 var express    = require('express');
 var app        = express();
+// Tells node to start a new server and use this express app as a boilerplate
+// Anything the express app listen to this server should to
 var http       = require('http').Server(app);
+// call it with http; Think of io like our app variable
 var io         = require('socket.io')(http);
 var moment     = require('moment')
 var bodyParser = require('body-parser');
 var messageRouter = require('./messageRouter')
 
+// express.static takes the path to the folder
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(express.static('./'));
 app.use("/api", messageRouter)
 
 var clientInfo = {};
-// // Sends current users to provided socket
+// Sends current users to provided socket
 function sendCurrentUsers(socket) {
   var info  = clientInfo[socket.id];
   var users = [];
@@ -35,7 +40,8 @@ function sendCurrentUsers(socket) {
   })
 }
 
-
+//  lets you listen for events; first param the name of the event ; second CB;
+//  when you get connection event run function
 io.on('connection', function(socket){
   console.log('User connected via socket.io!');
 
