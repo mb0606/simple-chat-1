@@ -17,6 +17,16 @@ app.use(bodyParser.json());
 app.use(express.static('./'));
 app.use("/api", messageRouter)
 
+
+// Create a new var obj called client info
+// The key will be the socketId
+// ie. clientInfo = {
+//           "socketID38832": {
+//                name: 'Andrew',
+//                room: 'Room Name"
+//                          }
+//                }
+
 var clientInfo = {};
 // Sends current users to provided socket
 function sendCurrentUsers(socket) {
@@ -61,16 +71,26 @@ io.on('connection', function(socket){
     }
   });
 
+  // create on for event of join room the req = the object we are passing
+  // on emit
   socket.on('joinRoom', function(req){
     // req is the client info
     console.log("this is the clientInfo outside :" , req)
     clientInfo[socket.id] = req;
+    // join :: is a built in method that tell the socket library
+    // to add this socket to a specific room here we are using req.room
     socket.join(req.room);
+    // next we are emit a message to everyone in the room that someone
+    // has joined
+    // broadcast :: sends the event to everyone but the one who
+    // emitted it
+    // to :: let us specify the specific room to send it to
     socket.broadcast.to(req.room).emit('message', {
+      // here we are setting the message
       name: 'System',
       text: req.name + ' has joined!',
       timestamp: moment().valueOf()
-     })
+     });
   });
 
   socket.on('message', function(message){
@@ -81,6 +101,8 @@ io.on('connection', function(socket){
       sendCurrentUsers(socket);
     } else {
       message.timestamp = moment().valueOf()
+      // We can get more specific
+      // to : inside the argument will be the specific room name
       io.to(clientInfo[socket.id].room).emit('message', message);
     }
   })
