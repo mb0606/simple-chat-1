@@ -32,7 +32,7 @@ socket.on('message', function(message){
   console.log(message.text);
   var $message = $('.messages');
   // We receive the message and add it to our messages div by appending it.
-  $message.append('<p><strong>' + message.name + ' ' + momentTimeStamp.local().format('H:mm a') + '</strong>:  ' + message.text  + '</p>')
+  $message.prepend('<p><strong>' + message.name + ' ' + momentTimeStamp.local().format('H:mm a') + '</strong>:  ' + message.text  + '</p>')
 });
 
 // handles submit of new message

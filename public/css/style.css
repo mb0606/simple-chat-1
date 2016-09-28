@@ -1,10 +1,16 @@
 .spacer-60 {
   margin-top: 60px;
 }
+
 .panel {
   padding:20px;
-}
 
+}
+.panel-body {
+  padding:20px;
+  height: 400px;
+  overflow: scroll;
+}
 .settings {
   float:right;
   color: darkturquoise;
