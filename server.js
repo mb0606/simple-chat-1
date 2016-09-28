@@ -56,17 +56,23 @@ function sendCurrentUsers(socket) {
 // socket refers to an individual connection
 io.on('connection', function(socket){
   console.log('User connected via socket.io!');
-
+  // unlike some of our custom events disconnect is a built in event name
   socket.on('disconnect', function(){
+    // and we will create a call back function to check if user
+    // is actually part of a chat
+    // we will use clientInfo to find out
     console.log("this is the clientInfo Obj :" ,clientInfo[socket.id])
     var userData = clientInfo[socket.id];
     if(typeof clientInfo[socket.id] !== 'undefined'){
+      // socket.leave take one argument and this is the room name
       socket.leave(userData.room);
+      // we will emit to the room a custom message that the user has left the room
       io.to(userData.room).emit('message', {
         name: 'System',
         text: userData.name + ' has left ',
         timestamp: moment().valueOf()
       });
+      // user from clientInfo
       delete clientInfo[socket.id];
     }
   });
